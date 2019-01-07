@@ -9,9 +9,11 @@ const aProducts = [
 
 class ProductList extends Component {
     getProducts = () => aProducts.map(product => <ProductItem product={product} key={product.id}/>)
+    
     render() {
         return (
             <div>
+                <h2>Products</h2>
                 { this.getProducts() }
             </div>
         );

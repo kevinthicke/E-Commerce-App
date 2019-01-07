@@ -8,9 +8,10 @@ export default class App extends Component {
         <div>
           <Navbar inverse collapseOnSelect>
             <Navbar.Brand>
-            <a href="#">E-Commerce</a>
+            <a href="#">Redux-Commerce</a>
             </Navbar.Brand>
           </Navbar>
+
           <Grid>
             <Row>
               <Col xs={12} md={6}>
