@@ -1,0 +1,15 @@
+.ProductItem {
+    display:grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.ProductInfo {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 12pt;
+}
+
+.ProductItemButton {
+    font-size: 12pt;
+}
