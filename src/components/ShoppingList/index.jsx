@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Button, ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
-import { store } from '../../store';
 import TotalPrice from './TotalPrice';
 import { _removeFromCart } from './../../actions';
+import { connect } from 'react-redux';
 
 const spanStyle = {
     fontSize: '12pt',
@@ -10,30 +10,14 @@ const spanStyle = {
 }
 
 class ShoppingList extends Component {
-    constructor() {
-        super();
-        this.state = {
-            cart: []
-        }
-
-        store.subscribe(() => {
-            this.setState({
-                cart: store.getState().cart
-            })
-        });
-    }
-
-    removeFromCart = product => {
-        store.dispatch(_removeFromCart(product));
-    }
-
+    
     getCartItems = () => {
-        const { cart } = this.state;
+        const { cart } = this.props;
         return cart.map((product, index) => {
             const { title } = product;
             return (
                 <ListGroupItem key={index}>
-                    <Button bsStyle="danger" onClick={() => this.removeFromCart(product)}>
+                    <Button bsStyle="danger" onClick={() => this.props.removeFromCart(product)}>
                         <Glyphicon glyph="glyphicon glyphicon-remove"/>
                     </Button>
                     <span style={spanStyle}>{ `${title}` }</span>
@@ -43,8 +27,7 @@ class ShoppingList extends Component {
     }
 
     render() {
-        const { cart } = this.state;
-
+        const { cart } = this.props;
         return (
             <div>
                 <h3>Shopping cart</h3>
@@ -58,4 +41,12 @@ class ShoppingList extends Component {
     }
 }
 
-export default ShoppingList;
+const mapStateToProps = state => ({
+    cart: state.cart
+})
+
+const mapDispatchToProps = dispatch => ({
+    removeFromCart: product => dispatch(_removeFromCart(product))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingList);

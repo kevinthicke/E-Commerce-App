@@ -4,6 +4,7 @@ const initialState = {
 
 export const reducer = (state=initialState, action) => {
     const { type, product } = action;
+    
     switch(type) {
         case 'ADD_TO_CART':
             return ({
