@@ -4,8 +4,8 @@ const initialState = {
     cart: []
 };
 
-const reducer = (state, action) => {
-    switch(state.type) {
+const reducer = (state=initialState, action) => {
+    switch(action.type) {
         case 'ADD_TO_CART':
             return ({
                 ...state,
@@ -14,4 +14,4 @@ const reducer = (state, action) => {
     }
 }
 
-export const store =  createStore(reducer, initialState);
+export const store =  createStore(reducer);
