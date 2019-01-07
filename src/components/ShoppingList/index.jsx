@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Button, ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
 import { store } from '../../store';
-import ShoppingListItem from './ShoppingListItem';
 import TotalPrice from './TotalPrice';
+import { _removeFromCart } from './../../actions';
+
+const spanStyle = {
+    fontSize: '12pt',
+    marginLeft: '20px'
+}
 
 class ShoppingList extends Component {
     constructor() {
@@ -18,10 +23,23 @@ class ShoppingList extends Component {
         });
     }
 
+    removeFromCart = product => {
+        store.dispatch(_removeFromCart(product));
+    }
+
     getCartItems = () => {
         const { cart } = this.state;
-        return cart.map(
-            (product, index) => <ShoppingListItem product={product} key={index}/>);
+        return cart.map((product, index) => {
+            const { title } = product;
+            return (
+                <ListGroupItem key={index}>
+                    <Button bsStyle="danger" onClick={() => this.removeFromCart(product)}>
+                        <Glyphicon glyph="glyphicon glyphicon-remove"/>
+                    </Button>
+                    <span style={spanStyle}>{ `${title}` }</span>
+                </ListGroupItem>
+            )
+        });
     }
 
     render() {
