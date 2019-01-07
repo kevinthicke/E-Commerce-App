@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import { store } from '../../store';
 import ShoppingListItem from './ShoppingListItem';
+import TotalPrice from './TotalPrice';
 
 class ShoppingList extends Component {
     constructor() {
@@ -24,12 +25,15 @@ class ShoppingList extends Component {
     }
 
     render() {
+        const { cart } = this.state;
+
         return (
             <div>
                 <h3>Shopping cart</h3>
                 <ListGroup>
                     { this.getCartItems() }
                 </ListGroup>
+                <TotalPrice cart={cart}/>
             </div>
                 
         );
