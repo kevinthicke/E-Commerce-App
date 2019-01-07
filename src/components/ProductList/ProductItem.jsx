@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Well, Button, Glyphicon } from 'react-bootstrap';
 import { store } from './../../store';
 import * as styles from './styles.css';
+import { _addToCart } from '../../actions';
 
 export default class ProductItem extends Component {
 
     addToCart = product => {
-        store.dispatch({ type: 'ADD_TO_CART', product});
+        store.dispatch(_addToCart(product));
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, ListGroupItem, Glyphicon } from 'react-bootstrap';
 import { store } from './../../store';
+import { _removeFromCart } from '../../actions';
 
 const spanStyle = {
     fontSize: '12pt',
@@ -9,10 +10,10 @@ const spanStyle = {
 
 const ShoppingListItem = ({ product }) => {
     const removeFromCart = product => {
-        store.dispatch({ type: 'REMOVE_FROM_CART', product });
+        store.dispatch(_removeFromCart(product));
     }
 
-    const { title, price } = product;
+    const { title } = product;
     return (
         <ListGroupItem>
             <Button bsStyle="danger" onClick={() => removeFromCart(product)}>
