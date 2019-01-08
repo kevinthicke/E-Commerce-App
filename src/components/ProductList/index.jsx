@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Well, Button, Glyphicon } from 'react-bootstrap';
-import * as styles from './styles.css';
 import { _addToCart } from '../../actions';
+import ProductListItem from './ProductListItem';
 
 const aProducts = [
     { id: 1, title: "The Meaning of Relativity", author: "Albert Einstein", price: 12.99 },
@@ -10,19 +9,11 @@ const aProducts = [
     { id: 3, title: "Space-time-matter", author: "Hermann Weyl", price: 31.89 }
 ]
 
-const  ProductList = ({ addToCart }) => {
+const ProductList = ({ addToCart }) => {
+    const handleProductItemClick = product => addToCart(product);
+
     const getProducts = () => aProducts.map(
-        product => (
-            <Well className={styles.ProductItem} key={product.id}> 
-                <span className={styles.ProductInfo}>
-                    { `${product.title}, ${product.author}` }
-                </span>
-                <Button className={styles.ProductItemButton} bsStyle="primary" onClick={() => addToCart(product)}>
-                    { `${product.price}` }<Glyphicon glyph="glyphicon glyphicon-usd"/>
-                </Button>
-            </Well>
-        )
-    )
+        product => <ProductListItem key={product.id} product={product} onProductItemClick={() => handleProductItemClick(product)}/>);
     
     return (
         <div>
