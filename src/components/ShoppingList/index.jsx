@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import TotalPrice from './TotalPrice';
 import { _removeFromCart } from './../../actions';
 import { connect } from 'react-redux';
@@ -10,7 +10,9 @@ const ShoppingList = ({ cart, removeFromCart })=> {
     const handleShoppingListItem = product => removeFromCart(product);
 
     const getCartItems = () => {
-        return cart.map((product, index) => <ShoppingListItem key={index} product={product} onShoppingListItem={()=> handleShoppingListItem(product)}/>);
+        return cart.map((product, index) => <ShoppingListItem key={index} 
+                                                              product={product} 
+                                                              onShoppingListItem={()=> handleShoppingListItem(product)}/>);
     }
 
     return (
